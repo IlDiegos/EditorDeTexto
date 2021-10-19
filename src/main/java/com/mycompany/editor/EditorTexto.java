@@ -4,10 +4,13 @@
  */
 package com.mycompany.editor;
 
+import static java.awt.SystemColor.text;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -40,9 +43,14 @@ public class EditorTexto extends javax.swing.JFrame {
 
         nose = new javax.swing.JDialog();
         elegir = new javax.swing.JFileChooser();
+        jDialog1 = new javax.swing.JDialog();
+        guardar = new javax.swing.JFileChooser();
+        eligeColores = new javax.swing.JDialog();
+        elegirColor = new javax.swing.JColorChooser();
+        Aplicar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        Ubicacion = new javax.swing.JLabel();
-        Tamaño = new javax.swing.JLabel();
+        ubi = new javax.swing.JLabel();
+        tam = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Texto = new javax.swing.JTextArea();
@@ -50,19 +58,42 @@ public class EditorTexto extends javax.swing.JFrame {
         Archivos = new javax.swing.JMenu();
         Abrir = new javax.swing.JMenuItem();
         Guardar = new javax.swing.JMenuItem();
+        Guardarcomo = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
         Formato = new javax.swing.JMenu();
         Fuente = new javax.swing.JMenuItem();
         Color = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        acerca = new javax.swing.JMenu();
 
+        elegir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                elegirActionPerformed(evt);
+            }
+        });
         nose.getContentPane().add(elegir, java.awt.BorderLayout.CENTER);
+
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
+        jDialog1.getContentPane().add(guardar, java.awt.BorderLayout.CENTER);
+
+        eligeColores.getContentPane().add(elegirColor, java.awt.BorderLayout.CENTER);
+
+        Aplicar.setText("Aplicar");
+        Aplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AplicarActionPerformed(evt);
+            }
+        });
+        eligeColores.getContentPane().add(Aplicar, java.awt.BorderLayout.PAGE_END);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Ubicacion.setText("Ubicación:");
+        ubi.setText("Ubicación:");
 
-        Tamaño.setText("Tamaño:");
+        tam.setText("Tamaño:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,9 +101,9 @@ public class EditorTexto extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
-                .addComponent(Tamaño, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ubi, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(tam, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -80,8 +111,8 @@ public class EditorTexto extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Ubicacion)
-                    .addComponent(Tamaño))
+                    .addComponent(ubi)
+                    .addComponent(tam))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -114,9 +145,27 @@ public class EditorTexto extends javax.swing.JFrame {
         Archivos.add(Abrir);
 
         Guardar.setText("Guardar");
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarActionPerformed(evt);
+            }
+        });
         Archivos.add(Guardar);
 
+        Guardarcomo.setText("Guardar como");
+        Guardarcomo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarcomoActionPerformed(evt);
+            }
+        });
+        Archivos.add(Guardarcomo);
+
         Salir.setText("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
         Archivos.add(Salir);
 
         jMenuBar1.add(Archivos);
@@ -132,12 +181,22 @@ public class EditorTexto extends javax.swing.JFrame {
         Formato.add(Fuente);
 
         Color.setText("Color");
+        Color.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ColorActionPerformed(evt);
+            }
+        });
         Formato.add(Color);
 
         jMenuBar1.add(Formato);
 
-        jMenu1.setText("Acerca de");
-        jMenuBar1.add(jMenu1);
+        acerca.setText("Acerca de");
+        acerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acercaActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(acerca);
 
         setJMenuBar(jMenuBar1);
 
@@ -158,30 +217,32 @@ public class EditorTexto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirActionPerformed
-        
+
         //Mostrar sirve para mostrar el archivo seleccionado
         int mostrar = elegir.showOpenDialog(null);
         if (mostrar == JFileChooser.APPROVE_OPTION) {
             f = elegir.getSelectedFile();
         }
-        
+
+        if (Texto.getText().length() > 0) {
+            Texto.setText("");
+        }
+
         //Buffered para almacenar el archivo seleccionado, en este caso el archivo File F
-        try(BufferedReader br = new BufferedReader(new FileReader(f))){
-             
-           
-          Iterator<String> it = br.lines().iterator();
-          
-          //Lee las lineas del archivo
-          while(it.hasNext()){
-              String s = it.next();
-              Texto.append(s+"\n");
-          }
-           
-          
-                
-                
+        try ( BufferedReader br = new BufferedReader(new FileReader(f))) {
+            ubi.setText("" + f.getAbsolutePath());
+            tam.setText(""+f.length() +" Bytes");
+            Iterator<String> it = br.lines().iterator();
+
+            //Lee las lineas del archivo
+            while (it.hasNext()) {
+                String s = it.next();
+                Texto.append(s + "\n");
+
+            }
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(EditorTexto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -193,6 +254,60 @@ public class EditorTexto extends javax.swing.JFrame {
     private void FuenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FuenteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FuenteActionPerformed
+
+    private void GuardarcomoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarcomoActionPerformed
+        //Mostrar sirve para mostrar el archivo seleccionado
+        int mostrar = guardar.showSaveDialog(null);
+        if (mostrar == JFileChooser.APPROVE_OPTION) {
+            f = guardar.getSelectedFile();
+        }
+
+        try ( FileWriter fw = new FileWriter(f)) {
+            fw.write(Texto.getText());
+            ubi.setText(f.getAbsolutePath());
+
+        } catch (IOException ex) {
+            Logger.getLogger(EditorTexto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_GuardarcomoActionPerformed
+
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_SalirActionPerformed
+
+    private void elegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_elegirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_elegirActionPerformed
+
+    private void acercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaActionPerformed
+
+
+    }//GEN-LAST:event_acercaActionPerformed
+
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guardarActionPerformed
+
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+
+        try ( FileWriter fw = new FileWriter(f)) {
+            fw.write(Texto.getText());
+
+        } catch (IOException ex) {
+            Logger.getLogger(EditorTexto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_GuardarActionPerformed
+
+    private void ColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorActionPerformed
+        eligeColores.setSize(600, 300);  
+        eligeColores.setVisible(true);
+          
+    }//GEN-LAST:event_ColorActionPerformed
+
+    private void AplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AplicarActionPerformed
+       
+    }//GEN-LAST:event_AplicarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,21 +346,27 @@ public class EditorTexto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Abrir;
+    private javax.swing.JButton Aplicar;
     private javax.swing.JMenu Archivos;
     private javax.swing.JMenuItem Color;
     private javax.swing.JMenu Formato;
     private javax.swing.JMenuItem Fuente;
     private javax.swing.JMenuItem Guardar;
+    private javax.swing.JMenuItem Guardarcomo;
     private javax.swing.JMenuItem Salir;
-    private javax.swing.JLabel Tamaño;
     private javax.swing.JTextArea Texto;
-    private javax.swing.JLabel Ubicacion;
+    private javax.swing.JMenu acerca;
     private javax.swing.JFileChooser elegir;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JColorChooser elegirColor;
+    private javax.swing.JDialog eligeColores;
+    private javax.swing.JFileChooser guardar;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDialog nose;
+    private javax.swing.JLabel tam;
+    private javax.swing.JLabel ubi;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,11 +4,23 @@
  */
 package com.mycompany.editor;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author diegu
  */
 public class EditorTexto extends javax.swing.JFrame {
+
+    private File f;
 
     /**
      * Creates new form EditorTexto
@@ -26,6 +38,8 @@ public class EditorTexto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        nose = new javax.swing.JDialog();
+        elegir = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         Ubicacion = new javax.swing.JLabel();
         Tamaño = new javax.swing.JLabel();
@@ -41,6 +55,8 @@ public class EditorTexto extends javax.swing.JFrame {
         Fuente = new javax.swing.JMenuItem();
         Color = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+
+        nose.getContentPane().add(elegir, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,11 +104,6 @@ public class EditorTexto extends javax.swing.JFrame {
         );
 
         Archivos.setText("Archivo");
-        Archivos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ArchivosActionPerformed(evt);
-            }
-        });
 
         Abrir.setText("Abrir");
         Abrir.addActionListener(new java.awt.event.ActionListener() {
@@ -148,12 +159,35 @@ public class EditorTexto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ArchivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArchivosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ArchivosActionPerformed
-
     private void AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirActionPerformed
-        // TODO add your handling code here:
+        
+        //Mostrar sirve para mostrar el archivo seleccionado
+        int mostrar = elegir.showOpenDialog(null);
+        if (mostrar == JFileChooser.APPROVE_OPTION) {
+            f = elegir.getSelectedFile();
+        }
+        
+        //Buffered para almacenar el archivo seleccionado, en este caso el archivo File F
+        try(BufferedReader br = new BufferedReader(new FileReader(f))){
+             
+           
+          Iterator<String> it = br.lines().iterator();
+          
+          //Lee las lineas del archivo
+          while(it.hasNext()){
+              String s = it.next();
+              Texto.append(s+"\n");
+          }
+           
+          
+                
+                
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(EditorTexto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(EditorTexto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_AbrirActionPerformed
 
     private void FuenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FuenteActionPerformed
@@ -206,10 +240,12 @@ public class EditorTexto extends javax.swing.JFrame {
     private javax.swing.JLabel Tamaño;
     private javax.swing.JTextArea Texto;
     private javax.swing.JLabel Ubicacion;
+    private javax.swing.JFileChooser elegir;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JDialog nose;
     // End of variables declaration//GEN-END:variables
 }

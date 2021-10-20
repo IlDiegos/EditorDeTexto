@@ -4,6 +4,8 @@
  */
 package com.mycompany.editor;
 
+import java.awt.Color;
+import java.awt.Font;
 import static java.awt.SystemColor.text;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -48,6 +50,17 @@ public class EditorTexto extends javax.swing.JFrame {
         eligeColores = new javax.swing.JDialog();
         elegirColor = new javax.swing.JColorChooser();
         Aplicar = new javax.swing.JButton();
+        tamanoFuente = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        tamF = new javax.swing.JSpinner();
+        lower = new javax.swing.JButton();
+        upper = new javax.swing.JButton();
+        dialogAcerca = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         ubi = new javax.swing.JLabel();
         tam = new javax.swing.JLabel();
@@ -64,6 +77,7 @@ public class EditorTexto extends javax.swing.JFrame {
         Fuente = new javax.swing.JMenuItem();
         Color = new javax.swing.JMenuItem();
         acerca = new javax.swing.JMenu();
+        acercaItem = new javax.swing.JMenuItem();
 
         elegir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +102,127 @@ public class EditorTexto extends javax.swing.JFrame {
             }
         });
         eligeColores.getContentPane().add(Aplicar, java.awt.BorderLayout.PAGE_END);
+
+        tamF.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tamFStateChanged(evt);
+            }
+        });
+
+        lower.setText("LowerCase");
+        lower.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lowerActionPerformed(evt);
+            }
+        });
+
+        upper.setText("UpperCase");
+        upper.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upperActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(lower)
+                .addGap(26, 26, 26)
+                .addComponent(upper)
+                .addGap(27, 27, 27)
+                .addComponent(tamF, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tamF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lower)
+                    .addComponent(upper))
+                .addContainerGap(188, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout tamanoFuenteLayout = new javax.swing.GroupLayout(tamanoFuente.getContentPane());
+        tamanoFuente.getContentPane().setLayout(tamanoFuenteLayout);
+        tamanoFuenteLayout.setHorizontalGroup(
+            tamanoFuenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 164, Short.MAX_VALUE)
+            .addGroup(tamanoFuenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(tamanoFuenteLayout.createSequentialGroup()
+                    .addGap(0, 32, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 32, Short.MAX_VALUE)))
+        );
+        tamanoFuenteLayout.setVerticalGroup(
+            tamanoFuenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(tamanoFuenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(tamanoFuenteLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jLabel2.setText("Referencias tomadas de StackOverflow y Java API.");
+
+        jLabel3.setText("https://github.com/IlDiegos");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+
+        jLabel1.setText("Desarrollado por Diego Gaitán Martín. ");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel1)))
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        jPanel4.add(jPanel5);
+
+        javax.swing.GroupLayout dialogAcercaLayout = new javax.swing.GroupLayout(dialogAcerca.getContentPane());
+        dialogAcerca.getContentPane().setLayout(dialogAcercaLayout);
+        dialogAcercaLayout.setHorizontalGroup(
+            dialogAcercaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogAcercaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        dialogAcercaLayout.setVerticalGroup(
+            dialogAcercaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -196,6 +331,15 @@ public class EditorTexto extends javax.swing.JFrame {
                 acercaActionPerformed(evt);
             }
         });
+
+        acercaItem.setText("Proyecto");
+        acercaItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acercaItemActionPerformed(evt);
+            }
+        });
+        acerca.add(acercaItem);
+
         jMenuBar1.add(acerca);
 
         setJMenuBar(jMenuBar1);
@@ -252,7 +396,8 @@ public class EditorTexto extends javax.swing.JFrame {
     }//GEN-LAST:event_AbrirActionPerformed
 
     private void FuenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FuenteActionPerformed
-        // TODO add your handling code here:
+        tamanoFuente.setSize(500, 200);
+        tamanoFuente.setVisible(true);
     }//GEN-LAST:event_FuenteActionPerformed
 
     private void GuardarcomoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarcomoActionPerformed
@@ -281,8 +426,7 @@ public class EditorTexto extends javax.swing.JFrame {
     }//GEN-LAST:event_elegirActionPerformed
 
     private void acercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaActionPerformed
-
-
+       
     }//GEN-LAST:event_acercaActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
@@ -306,8 +450,33 @@ public class EditorTexto extends javax.swing.JFrame {
     }//GEN-LAST:event_ColorActionPerformed
 
     private void AplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AplicarActionPerformed
-       
+        Color colorFuente = elegirColor.getColor();
+        Texto.setForeground(colorFuente);
     }//GEN-LAST:event_AplicarActionPerformed
+
+    private void tamFStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tamFStateChanged
+        Font fuente = new Font(Texto.getFont().getName(), Texto.getFont().getStyle(), (int) tamF.getValue() );
+        Texto.setFont(fuente);
+        
+        
+    }//GEN-LAST:event_tamFStateChanged
+
+    private void acercaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaItemActionPerformed
+         dialogAcerca.setSize(400, 200);
+         dialogAcerca.setVisible(true);
+    }//GEN-LAST:event_acercaItemActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void lowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowerActionPerformed
+        Texto.setText(Texto.getText().toLowerCase());
+    }//GEN-LAST:event_lowerActionPerformed
+
+    private void upperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upperActionPerformed
+        Texto.setText(Texto.getText().toUpperCase());
+    }//GEN-LAST:event_upperActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,17 +525,29 @@ public class EditorTexto extends javax.swing.JFrame {
     private javax.swing.JMenuItem Salir;
     private javax.swing.JTextArea Texto;
     private javax.swing.JMenu acerca;
+    private javax.swing.JMenuItem acercaItem;
+    private javax.swing.JDialog dialogAcerca;
     private javax.swing.JFileChooser elegir;
     private javax.swing.JColorChooser elegirColor;
     private javax.swing.JDialog eligeColores;
     private javax.swing.JFileChooser guardar;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton lower;
     private javax.swing.JDialog nose;
     private javax.swing.JLabel tam;
+    private javax.swing.JSpinner tamF;
+    private javax.swing.JDialog tamanoFuente;
     private javax.swing.JLabel ubi;
+    private javax.swing.JButton upper;
     // End of variables declaration//GEN-END:variables
 }

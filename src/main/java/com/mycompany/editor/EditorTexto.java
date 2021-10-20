@@ -79,18 +79,8 @@ public class EditorTexto extends javax.swing.JFrame {
         acerca = new javax.swing.JMenu();
         acercaItem = new javax.swing.JMenuItem();
 
-        elegir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                elegirActionPerformed(evt);
-            }
-        });
         nose.getContentPane().add(elegir, java.awt.BorderLayout.CENTER);
 
-        guardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarActionPerformed(evt);
-            }
-        });
         jDialog1.getContentPane().add(guardar, java.awt.BorderLayout.CENTER);
 
         eligeColores.getContentPane().add(elegirColor, java.awt.BorderLayout.CENTER);
@@ -171,11 +161,6 @@ public class EditorTexto extends javax.swing.JFrame {
         jLabel2.setText("Referencias tomadas de StackOverflow y Java API.");
 
         jLabel3.setText("https://github.com/IlDiegos");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
 
         jLabel1.setText("Desarrollado por Diego Gaitán Martín. ");
 
@@ -326,11 +311,6 @@ public class EditorTexto extends javax.swing.JFrame {
         jMenuBar1.add(Formato);
 
         acerca.setText("Acerca de");
-        acerca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                acercaActionPerformed(evt);
-            }
-        });
 
         acercaItem.setText("Proyecto");
         acercaItem.addActionListener(new java.awt.event.ActionListener() {
@@ -361,7 +341,7 @@ public class EditorTexto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirActionPerformed
 
         //Mostrar sirve para mostrar el archivo seleccionado
@@ -377,7 +357,7 @@ public class EditorTexto extends javax.swing.JFrame {
         //Buffered para almacenar el archivo seleccionado, en este caso el archivo File F
         try ( BufferedReader br = new BufferedReader(new FileReader(f))) {
             ubi.setText("" + f.getAbsolutePath());
-            tam.setText(""+f.length() +" Bytes");
+            tam.setText("" + f.length() + " Bytes");
             Iterator<String> it = br.lines().iterator();
 
             //Lee las lineas del archivo
@@ -421,18 +401,6 @@ public class EditorTexto extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_SalirActionPerformed
 
-    private void elegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_elegirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_elegirActionPerformed
-
-    private void acercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaActionPerformed
-       
-    }//GEN-LAST:event_acercaActionPerformed
-
-    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_guardarActionPerformed
-
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
 
         try ( FileWriter fw = new FileWriter(f)) {
@@ -444,9 +412,9 @@ public class EditorTexto extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void ColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorActionPerformed
-        eligeColores.setSize(600, 300);  
+        eligeColores.setSize(600, 300);
         eligeColores.setVisible(true);
-          
+
     }//GEN-LAST:event_ColorActionPerformed
 
     private void AplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AplicarActionPerformed
@@ -455,20 +423,16 @@ public class EditorTexto extends javax.swing.JFrame {
     }//GEN-LAST:event_AplicarActionPerformed
 
     private void tamFStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tamFStateChanged
-        Font fuente = new Font(Texto.getFont().getName(), Texto.getFont().getStyle(), (int) tamF.getValue() );
+        Font fuente = new Font(Texto.getFont().getName(), Texto.getFont().getStyle(), (int) tamF.getValue());
         Texto.setFont(fuente);
-        
-        
+
+
     }//GEN-LAST:event_tamFStateChanged
 
     private void acercaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaItemActionPerformed
-         dialogAcerca.setSize(400, 200);
-         dialogAcerca.setVisible(true);
+        dialogAcerca.setSize(400, 200);
+        dialogAcerca.setVisible(true);
     }//GEN-LAST:event_acercaItemActionPerformed
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel3MouseClicked
 
     private void lowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowerActionPerformed
         Texto.setText(Texto.getText().toLowerCase());
